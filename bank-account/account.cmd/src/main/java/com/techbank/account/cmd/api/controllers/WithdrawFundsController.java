@@ -15,6 +15,7 @@ import java.util.logging.Logger;
 
 @RestController
 @RequestMapping(path = "/api/v1/withdrawFunds")
+@CrossOrigin
 public class WithdrawFundsController {
     private final Logger logger = Logger.getLogger(WithdrawFundsController.class.getName());
 
