@@ -11,10 +11,7 @@ import com.techbank.cqrs.core.infrastructure.QueryDispatcher;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.text.MessageFormat;
 import java.util.List;
@@ -23,6 +20,7 @@ import java.util.logging.Logger;
 
 @RestController
 @RequestMapping(path = "/api/v1/bankAccountLookup")
+
 public class AccountLookupController {
     private final Logger logger = Logger.getLogger(AccountLookupController.class.getName());
 
@@ -30,6 +28,7 @@ public class AccountLookupController {
     private QueryDispatcher queryDispatcher;
 
     @GetMapping(path = "/")
+    @CrossOrigin
     public ResponseEntity<AccountLookupResponse> getAllAccounts() {
         try {
             List<BankAccount> accounts = queryDispatcher.send(new FindAllAccountsQuery());
@@ -49,6 +48,7 @@ public class AccountLookupController {
     }
 
     @GetMapping(path = "/byId/{id}")
+    @CrossOrigin
     public ResponseEntity<AccountLookupResponse> getAccountById(@PathVariable(value = "id") String id) {
         try {
             List<BankAccount> accounts = queryDispatcher.send(new FindAccountByIdQuery(id));
@@ -68,6 +68,7 @@ public class AccountLookupController {
     }
 
     @GetMapping(path = "/byHolder/{accountHolder}")
+    @CrossOrigin
     public ResponseEntity<AccountLookupResponse> getAccountByHolder(@PathVariable(value = "accountHolder") String accountHolder) {
         try {
             List<BankAccount> accounts = queryDispatcher.send(new FindAccountByHolderQuery(accountHolder));
@@ -87,6 +88,7 @@ public class AccountLookupController {
     }
 
     @GetMapping(path = "/withBalance/{equalityType}/{balance}")
+    @CrossOrigin
     public ResponseEntity<AccountLookupResponse> getAccountWithBalance(@PathVariable(value = "equalityType") EqualityType equalityType,
                                                                        @PathVariable(value = "balance") double balance) {
         try {

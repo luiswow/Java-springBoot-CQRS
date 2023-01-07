@@ -14,6 +14,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 @RestController
+@CrossOrigin
 @RequestMapping(path = "/api/v1/depositFunds")
 public class DepositFundsController {
     private final Logger logger = Logger.getLogger(DepositFundsController.class.getName());
