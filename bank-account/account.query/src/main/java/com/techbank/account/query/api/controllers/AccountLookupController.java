@@ -73,7 +73,7 @@ public class AccountLookupController {
         try {
             List<BankAccount> accounts = queryDispatcher.send(new FindAccountByHolderQuery(accountHolder));
             if (accounts == null || accounts.size() == 0) {
-                return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
+                return new ResponseEntity<>(null, HttpStatus.NO_CONTENT );
             }
             var response = AccountLookupResponse.builder()
                     .accounts(accounts)
